@@ -1,0 +1,17 @@
+.save-btn{
+    padding: 10px;
+	font-size: 15px;
+    background-color: rgb(18, 138, 236);
+    color: whitesmoke;
+    font-weight: bolder;
+    border-radius: 25px;
+    width: 100px;
+}
+
+.save-btn:focus{
+    outline: none;
+    box-shadow: 0 0 5px coral;
+    border: 1px solid coral;
+    font-style: italic;
+    background-color: rgb(29, 233, 107);
+}
