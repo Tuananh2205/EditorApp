@@ -1,18 +1,42 @@
 import React from 'react';
-import './index.css';
+
 function CropImage(props) {
-	return (
-		<div>
-			<h3>CropImage Editor</h3>
-			<form>
-				<label>Width:</label>
-				<input placeholder="Input here"></input>
-				<label>Width:</label>
-				<input placeholder="Input here"></input>
-				<button>Set Crop</button>
-			</form>
-		</div>
-	);
+    const {drawImage} = props
+    return (
+        <div>
+            <form id="crop" className="crop-filter" onSubmit={drawImage}>
+        <label>Start position:</label>
+
+        <div className="form-row">
+          <div className="col">
+            <input className="form-control" type="text" placeholder="Input x" />
+          </div>
+          <div className="col">
+            <input className="form-control" type="text" placeholder="Input y" />
+          </div>
+        </div>
+        <br></br>
+        <label>End position:</label>
+        <div className="form-row">
+          <div className="col">
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Input x'"
+            />
+          </div>
+          <div className="col">
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Input y'"
+            />
+          </div>
+        </div>
+        <button className="btn btn-light">Crop</button>
+      </form>
+        </div>
+    );
 }
 
 export default CropImage;

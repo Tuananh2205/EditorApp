@@ -1,58 +1,50 @@
-import React, { useState } from 'react';
-import './index.css';
-// import '../CropImage/index'
-import ReactCrop from 'react-image-crop';
-import 'react-image-crop/dist/ReactCrop.css';
-// import CropImage from '../CropImage/index';
-import ConvertPhoto from '../ConvertPhoto/index';
+import React from "react";
+import "./index.css";
+import Button from "@material-ui/core/Button";
 
 function UploadFile(props) {
-	const [file, setFile] = useState(null);
-	const [crop, setCrop] = useState({ aspect: 16 / 9 });
-	const changeImage = (e) => {
-		setFile(URL.createObjectURL(e.target.files[0]));
-	};
+  const { setFile } = props;
+  // const onSelectedFile = e =>{
+  //     setFile(URL.createObjectURL(e.target.files[0]))
+  // }
+  const onSelectedFile = (e) => {
+    e.preventDefault();
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+      console.log(e.dataTransfer);
+    } else if (e.target) {
+      files = e.target.files;
+      console.log(files);
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setFile(reader.result);
+    };
+    reader.readAsDataURL(files[0]);
+  };
 
-	const displayImage = (e) => {
-		e.preventDefault();
-		const image = e.target;
-		if (image === file) return image;
-	};
-
-	const handleOnCropChange = (crop) => {
-		console.log(crop);
-		setCrop(crop);
-	};
-
-	const handlePhotoLoaded = (image) => {
-		console.log(image);
-	};
-
-	const handleOnCropComplete = (crop, pixelCrop) => {
-		console.log(crop, pixelCrop);
-	};
-
-	return (
-		<div className="preview-container">
-			<form className="file-select-frm" onSubmit={displayImage}>
-				<input className="file_input" type="file" onChange={changeImage}></input>
-			</form>
-			<h1>IMAGE FIELD</h1>
-			<div className="file-container">
-				{/* <img className="pic" src={file} alt="pic" /> */}
-				{/* <br /> */}
-				{/* <ConvertPhoto image={file} /> */}
-				<ReactCrop
-					className="pic"
-					src={file}
-					crop={crop}
-					onChange={handleOnCropChange}
-					onImageLoaded={handlePhotoLoaded}
-					onComplete={handleOnCropComplete}
-				/>
-			</div>
-		</div>
-	);
+  return (
+    <div className="preview-container">
+      <form className="file-select-frm">
+        <div className="custom-file mb-3">
+          <input
+            className="custom-file-input"
+            type="file"
+            accept="/image/*"
+            onChange={onSelectedFile}
+            id="initial"
+            hidden
+          />
+         <label htmlFor="initial">
+        <Button variant="contained" color="default" component="span">
+          Upload
+        </Button>
+      </label>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default UploadFile;

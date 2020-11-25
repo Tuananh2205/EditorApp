@@ -1,0 +1,23 @@
+.file-container{
+	height: 50%;
+    margin-top: 20px;
+    /* background-color: rgb(182, 241, 222);  */
+    /* background-color: rgb(238, 209, 165); */
+    width: 30%;
+    border-radius: rgb(170, 140, 240) 25px;
+    /* border: black 1px solid; */
+    margin-left: 650px;
+    padding: 10px;
+    background-position: left top;
+    background-repeat: repeat;
+
+}
+
+.pic{
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid rgb(170, 140, 240);
+    border-radius: 60px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 15px;
+}
